@@ -23,12 +23,12 @@ jobs:
         run: pip install requests
 
       - name: Run Update Script
-        run: python update_iptv.py
+        run: python update_link.py
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "Github Action Bot"
           git config --global user.email "action@github.com"
-          git add playlist.m3u
+          git add IPTV.m3u
           git commit -m "Auto-update: New token applied $(date)" || echo "No changes to commit"
           git push
