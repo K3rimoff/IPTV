@@ -4,7 +4,7 @@ import os
 
 # Tokeni çəkəcəyimiz mənbə
 SOURCE_URL = "https://aztv.az/az/live"
-M3U_FILENAME = "playlist.m3u"
+M3U_FILENAME = "IPTV.m3u"
 
 def get_latest_token():
     headers = {
