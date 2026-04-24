@@ -1,34 +1,38 @@
-name: IPTV Token Auto-Update
+name: Update IPTV
 
 on:
   schedule:
-    - cron: '0 */3 * * *' # Hər 3 saatdan bir işləyir
-  workflow_dispatch: # İstədiyiniz vaxt əllə başlatmaq üçün düymə
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+# Qlobal mühit dəyişəni əlavə edirik ki, Node 24 istifadə olunsun
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
-      - name: Checkout Repository
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.11' # Daha stabil versiya
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: pip install requests
 
-      - name: Run Update Script
+      - name: Run script
         run: python update_link.py
 
-      - name: Commit and Push Changes
+      - name: Commit & push
         run: |
-          git config --global user.name "Github Action Bot"
-          git config --global user.email "action@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add IPTV.m3u
-          git commit -m "Auto-update: New token applied $(date)" || echo "No changes to commit"
+          # Əgər dəyişiklik yoxdursa xəta verməməsi üçün '|| exit 0' istifadə edirik
+          git commit -m "Auto update IPTV: $(date)" || exit 0
           git push
