@@ -1,33 +1,30 @@
-name: Update IPTV List
+name: Update IPTV
 
 on:
   schedule:
-    # Hər 6 saatdan bir işləyəcək (Cron formatı)
-    - cron: '0 */6 * * *'
-  workflow_dispatch: # Lazım olanda əllə başlatmaq üçün
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Set up Python
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: 3.x
 
-      - name: Install dependencies
-        run: pip install requests
-
-      - name: Run update script
+      - name: Run script
         run: python update_link.py
 
-      - name: Commit and Push changes
+      - name: Commit & push
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add playlist.m3u
-          git commit -m "Auto-update IPTV link with new token" || echo "No changes to commit"
+          git config --global user.name "bot"
+          git config --global user.email "bot@users.noreply.github.com"
+          git add IPTV.m3u
+          git commit -m "Auto update IPTV" || echo "No changes"
           git push
