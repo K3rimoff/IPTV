@@ -1,58 +1,57 @@
 #EXTM3U
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/aztv.svg", AZTV
+https://str.yodacdn.net/azertv/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="aztv" tvg-name="AZTV" tvg-logo="https://yoda.az/logos/aztv.svg" group-title="Azerbaijan",AZTV
-https://str.yodacdn.net/azertv/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/arb.svg", ARB
+https://str.yodacdn.net/arb/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="arb" tvg-name="ARB" tvg-logo="https://yoda.az/logos/arb.svg" group-title="Azerbaijan",ARB
-https://str.yodacdn.net/arb/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/arb24.svg", ARB24
+https://str.yodacdn.net/arb24/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="arb24" tvg-name="ARB 24" tvg-logo="https://yoda.az/logos/arb24.svg" group-title="Azerbaijan",ARB 24
-https://str.yodacdn.net/arb24/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/space.png", Space TV
+https://str.yodacdn.net/space/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="space" tvg-name="Space TV" tvg-logo="https://yoda.az/logos/space.png" group-title="Azerbaijan",Space TV
-https://str.yodacdn.net/space/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/xazar.png", Xəzər TV
+https://str.yodacdn.net/xazartv/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="xazar" tvg-name="Xəzər TV" tvg-logo="https://yoda.az/logos/xazar.png" group-title="Azerbaijan",Xəzər TV
-https://str.yodacdn.net/xazartv/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/itv.png", İctimai TV
+https://str.yodacdn.net/ictimaitele/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="itv" tvg-name="İctimai TV" tvg-logo="https://yoda.az/logos/itv.png" group-title="Azerbaijan",İctimai TV
-https://str.yodacdn.net/ictimaitele/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/atv_l.svg", Azad Azərbaycan (ATV)
+https://str.yodacdn.net/atv/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="atv" tvg-name="ATV" tvg-logo="https://yoda.az/logos/atv_l.svg" group-title="Azerbaijan",ATV
-https://str.yodacdn.net/atv/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/bakutv.webp", Baku TV
+https://str.yodacdn.net/bakutv/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="bakutv" tvg-name="Baku TV" tvg-logo="https://yoda.az/logos/bakutv.webp" group-title="Azerbaijan",Baku TV
-https://str.yodacdn.net/bakutv/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/real.svg", Real TV
+https://str.yodacdn.net/real/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="real" tvg-name="Real TV" tvg-logo="https://yoda.az/logos/real.svg" group-title="Azerbaijan",Real TV
-https://str.yodacdn.net/real/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/apatv.png", APA TV
+https://str.yodacdn.net/apatv/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="apatv" tvg-name="APA TV" tvg-logo="https://yoda.az/logos/apatv.png" group-title="Azerbaijan",APA TV
-https://str.yodacdn.net/apatv/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/biznestv.png", Biznes TV
+https://str.yodacdn.net/biznestv/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="biznes" tvg-name="Biznes TV" tvg-logo="https://yoda.az/logos/biznestv.png" group-title="Azerbaijan",Biznes TV
-https://str.yodacdn.net/biznestv/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/ntv.png", Naxçıvan TV
+https://str.yodacdn.net/ntv/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="ntv" tvg-name="Naxçıvan TV" tvg-logo="https://yoda.az/logos/ntv.png" group-title="Azerbaijan",Naxçıvan TV
-https://str.yodacdn.net/ntv/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/qafqaz.svg", Qafqaz TV
+https://str.yodacdn.net/qafkaz/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="qafqaz" tvg-name="Qafqaz TV" tvg-logo="https://yoda.az/logos/qafqaz.svg" group-title="Azerbaijan",Qafqaz TV
-https://str.yodacdn.net/qafkaz/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/start.png", Kanal S
+https://str.yodacdn.net/start/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="start" tvg-name="Kanal S" tvg-logo="https://yoda.az/logos/start.png" group-title="Azerbaijan",Kanal S
-https://str.yodacdn.net/start/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/kanal35.png", Kanal 35
+https://str.yodacdn.net/kanal35/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="kanal35" tvg-name="Kanal 35" tvg-logo="https://yoda.az/logos/kanal35.png" group-title="Azerbaijan",Kanal 35
-https://str.yodacdn.net/kanal35/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/medeniyyet.svg", Mədəniyyət TV
+https://str.yodacdn.net/medeniyyettele/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="medeniyyet" tvg-name="Mədəniyyət TV" tvg-logo="https://yoda.az/logos/medeniyyet.svg" group-title="Azerbaijan",Mədəniyyət TV
-https://str.yodacdn.net/medeniyyettele/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/cbc.svg", CBC Azerbaijan
+https://str.yodacdn.net/cbc/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="cbc" tvg-name="CBC TV" tvg-logo="https://yoda.az/logos/cbc.svg" group-title="Azerbaijan",CBC TV
-https://str.yodacdn.net/cbc/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/idman.svg", Idman TV
+https://str.yodacdn.net/idmantele/index.m3u8?token=TOKEN_PLACEHOLDER
 
-#EXTINF:-1 tvg-id="idman" tvg-name="İdman TV" tvg-logo="https://yoda.az/logos/idman.svg" group-title="Azerbaijan",İdman TV
-https://str.yodacdn.net/idmantele/index.m3u8?token=...
-
-#EXTINF:-1 tvg-id="gunesh" tvg-name="ARB Günəş" tvg-logo="https://yoda.az/logos/gunesh.svg" group-title="Azerbaijan",ARB Günəş
-https://str.yodacdn.net/arbgunesh/index.m3u8?token=...
+#EXTINF:-1 tvg-logo="https://yoda.az/logos/gunesh.svg", ARB Günəş
+https://str.yodacdn.net/arbgunesh/index.m3u8?token=TOKEN_PLACEHOLDER
