@@ -24,7 +24,10 @@ jobs:
           python-version: '3.11' # Daha stabil versiya
 
       - name: Install dependencies
-        run: pip install requests
+        run: |
+          pip install requests
+          pip install playwright
+          playwright install chromium
 
       - name: Run script
         run: python update_tur.py
@@ -33,7 +36,9 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add Tur.m3u
+          
           # Əgər dəyişiklik yoxdursa xəta verməməsi üçün '|| exit 0' istifadə edirik
           git commit -m "Auto update IPTV: $(date)" || exit 0
           git push
