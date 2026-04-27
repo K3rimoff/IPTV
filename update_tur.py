@@ -1,71 +1,72 @@
 import re
-import requests
+import asyncio
+from pathlib import Path
+from playwright.async_api import async_playwright
 
-INPUT_FILE = "Tur.m3u"
-# Hash-i götürəcəyimiz mənbə səhifə
-SOURCE_PAGE = "https://canlitv.com/show-tv-izle-1"
+INPUT_FILE = Path("Tur.m3u")
+URL = "https://canlitv.com/show-tv-izle-1"
 
-def get_fresh_hash():
-    # Saytın bot olduğumuzu anlamaması üçün daha geniş başlıqlar əlavə edirik
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-        'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
-        'Referer': 'https://canlitv.com/',
-        'Cache-Control': 'no-cache',
-        'Pragma': 'no-cache'
-    }
-    
-    try:
-        response = requests.get(SOURCE_PAGE, headers=headers, timeout=20)
-        response.raise_for_status()
-        
-        # Səhifənin gəlib-gəlmədiyini yoxlayaq
-        html_content = response.text
-        
-        # Regex-i daha spesifik edirik: 
-        # 'file:' sözündən sonra gələn və içində 'hash=' olan m3u8 linkini axtarırıq
-        match = re.search(r'file:\s*"(https?://[^"]+hash=([a-zA-Z0-9]+))"', html_content)
-        
+
+async def get_hash():
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        page = await browser.new_page()
+
+        await page.goto(URL, timeout=60000)
+
+        # səhifənin tam yüklənməsini gözlə
+        await page.wait_for_timeout(5000)
+
+        content = await page.content()
+
+        await browser.close()
+
+        match = re.search(
+            r'file:\s*"https?://[^"]+hash=([a-zA-Z0-9]+)',
+            content
+        )
+
         if match:
-            # match.group(2) birbaşa hash-in özünü verir
-            new_hash = match.group(2)
-            print(f"✅ Uğurla tapıldı! Yeni Hash: {new_hash}")
-            return new_hash
-        else:
-            # Alternativ: Əgər yuxarıdakı tapmasa, daha bəsit bir axtarış yoxlayaq
-            print("⚠️ Birinci regex tapmadı, alternativ yoxlanılır...")
-            alt_match = re.search(r'hash=([a-zA-Z0-9]{32})', html_content)
-            if alt_match:
-                return alt_match.group(1)
-            
-            print("❌ Hash kodu HTML daxilində tapılmadı.")
-            # Xəta anında HTML-in bir hissəsini çap edirik ki, problem nədir görək (Debug)
-            print("Gələn HTML-in bir hissəsi:", html_content[:500])
-            return None
-            
-    except Exception as e:
-        print(f"🆘 Bağlantı xətası: {e}")
-    return None
+            return match.group(1)
+
+        return None
+
 
 def update_m3u(new_hash):
-    try:
-        with open(INPUT_FILE, "r", encoding="utf-8") as f:
-            content = f.read()
+    if not INPUT_FILE.exists():
+        print("M3U tapılmadı")
+        return False
 
-        # Fayldakı bütün hash=... hissələrini yenisi ilə əvəz edirik
-        updated_content = re.sub(r'hash=[a-zA-Z0-9]+', f'hash={new_hash}', content)
+    content = INPUT_FILE.read_text(encoding="utf-8")
 
-        with open(INPUT_FILE, "w", encoding="utf-8") as f:
-            f.write(updated_content)
-        print(f"🚀 {INPUT_FILE} faylındakı bütün linklər yeniləndi.")
-        
-    except FileNotFoundError:
-        print(f"Xəta: {INPUT_FILE} faylı tapılmadı!")
+    updated, count = re.subn(
+        r'hash=[a-zA-Z0-9]+',
+        f'hash={new_hash}',
+        content
+    )
+
+    INPUT_FILE.write_text(updated, encoding="utf-8")
+
+    print(f"{count} link yeniləndi")
+    return count > 0
+
+
+async def main():
+    new_hash = await get_hash()
+
+    if not new_hash:
+        print("Hash tapılmadı")
+        return
+
+    print("Yeni hash:", new_hash)
+
+    updated = update_m3u(new_hash)
+
+    if updated:
+        print("Fayl yeniləndi")
+    else:
+        print("Dəyişiklik olmadı")
+
 
 if __name__ == "__main__":
-    current_hash = get_fresh_hash()
-    if current_hash:
-        update_m3u(current_hash)
-    else:
-        print("🛑 Yenilənmə baş tutmadı.")
+    asyncio.run(main())
