@@ -1,19 +1,19 @@
 #EXTM3U
 
 #EXTINF:-1 tvg-logo="https://www.lyngsat.com/logo/tv/ss/star-tv-tr.svg", Star TV
-https://yayin2.canlitv.fun/live/startv.stream/playlist.m3u8?hash=6b62e7e58c809cb90b2ecdb0d882c1bb
+https://yayin2.canlitv.fun/live/startv.stream/playlist.m3u8?hash=6b
 
 #EXTINF:-1 tvg-logo="https://www.lyngsat.com/logo/tv/ss/show-tv-tr.svg", Show TV
-https://yayin2.canlitv.fun/live/showtv.stream/playlist.m3u8?hash=6b62e7e58c809cb90b2ecdb0d882c1bb
+https://yayin2.canlitv.fun/live/showtv.stream/playlist.m3u8?hash=6b62e7e58c809cb90b2ecd
 
 #EXTINF:-1 tvg-logo="https://www.lyngsat.com/logo/tv/kk/kanal-7-tr.svg", Kanal 7
-https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8?hash=d3b56d58b3700e495da3058561542bc2
+https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8?hash=d3b56d
 
 #EXTINF:-1 tvg-logo="https://www.lyngsat.com/logo/tv/aa/atv_tr.png", ATV
 https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv.m3u8?hash=6b62e7e58c809cb90b2ecdb0d882c1bb
 
 #EXTINF:-1 tvg-logo="https://www.lyngsat.com/logo/tv/kk/kanal-d-tr.svg", Kanal D
-https://yayin2.canlitv.fun/live/kanald.stream/playlist.m3u8?hash=6b62e7e58c809cb90b2ecdb0d882c1bb
+https://yayin2.canlitv.fun/live/kanald.stream/playlist.m3u8?hash=6b62e7e58c809cb90
 
 #EXTINF:-1 tvg-logo="https://www.lyngsat.com/logo/tv/tt/tv85_tr.png", TV 8.5
 https://rkhubpaomb.turknet.ercdn.net/fwjkgpasof/tv8bucuk/tv8bucuk.m3u8?hash=158950c88074ef423456995a3ba8af72
