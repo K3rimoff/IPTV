@@ -1,7 +1,7 @@
 import re
 import requests
 
-INPUT_FILE = "IPTV.m3u"
+INPUT_FILE = "Aze.m3u"
 # Tokeni götürəcəyimiz əsas səhifə
 SOURCE_PAGE = "https://yoda.az/"
 
