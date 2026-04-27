@@ -1,72 +1,67 @@
 import re
-import asyncio
-from pathlib import Path
-from playwright.async_api import async_playwright
+import os
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-INPUT_FILE = Path("Tur.m3u")
-URL = "https://canlitv.com/show-tv-izle-1"
+def get_new_hash():
+    chrome_options = Options()
+    chrome_options.add_argument("--headless") # Ekran olmadan işlə
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    url = "https://canlitv.com/kanal-d-canli-yayin"
+    
+    try:
+        driver.get(url)
+        wait = WebDriverWait(driver, 20)
+        
+        # Player-i tapmaq və klikləmək (lazımdırsa)
+        try:
+            play_button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "jw-display-icon-container")))
+            play_button.click()
+            time.sleep(7) # Hash-in generasiya olunması üçün vaxt
+        except:
+            pass
 
-
-async def get_hash():
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        page = await browser.new_page()
-
-        await page.goto(URL, timeout=60000)
-
-        # səhifənin tam yüklənməsini gözlə
-        await page.wait_for_timeout(5000)
-
-        content = await page.content()
-
-        await browser.close()
-
-        match = re.search(
-            r'file:\s*"https?://[^"]+hash=([a-zA-Z0-9]+)',
-            content
-        )
-
+        page_source = driver.page_source
+        match = re.search(r'hash=([a-f0-9]+)', page_source)
+        
         if match:
             return match.group(1)
+    except Exception as e:
+        print(f"Xəta baş verdi: {e}")
+    finally:
+        driver.quit()
+    return None
 
-        return None
-
-
-def update_m3u(new_hash):
-    if not INPUT_FILE.exists():
-        print("M3U tapılmadı")
-        return False
-
-    content = INPUT_FILE.read_text(encoding="utf-8")
-
-    updated, count = re.subn(
-        r'hash=[a-zA-Z0-9]+',
-        f'hash={new_hash}',
-        content
-    )
-
-    INPUT_FILE.write_text(updated, encoding="utf-8")
-
-    print(f"{count} link yeniləndi")
-    return count > 0
-
-
-async def main():
-    new_hash = await get_hash()
-
-    if not new_hash:
-        print("Hash tapılmadı")
+def update_m3u_file(new_hash):
+    filename = "Tur.m3u"
+    if not os.path.exists(filename):
+        print(f"{filename} tapılmadı!")
         return
 
-    print("Yeni hash:", new_hash)
+    with open(filename, "r", encoding="utf-8") as file:
+        content = file.read()
 
-    updated = update_m3u(new_hash)
+    # M3U faylındakı bütün hash=... dəyərlərini yenisi ilə əvəz edirik
+    # Regex: 'hash=' sözündən sonra gələn hərf və rəqəmləri hədəf alır
+    new_content = re.sub(r'(hash=)[a-f0-9]+', r'\1' + new_hash, content)
 
-    if updated:
-        print("Fayl yeniləndi")
-    else:
-        print("Dəyişiklik olmadı")
-
+    with open(filename, "w", encoding="utf-8") as file:
+        file.write(new_content)
+    
+    print(f"Fayl yeniləndi. Yeni hash: {new_hash}")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    current_hash = get_new_hash()
+    if current_hash:
+        update_m3u_file(current_hash)
+    else:
+        print("Hash əldə etmək mümkün olmadı.")
